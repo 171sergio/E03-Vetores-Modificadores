@@ -24,7 +24,7 @@ public class Account {
     boolean deposit(double value) {
         if(value > 0.0) {
             this.balance += value;
-            this.operations[operationCounter].type = 'd';
+            this.operations[operationCounter] = new Operacao('d', value);
             this.operationCounter++;
             return true;
         } else {
@@ -36,7 +36,7 @@ public class Account {
     boolean withdraw(double value) {
         if(value > 0.0 && value <= this.balance) {
             this.balance -= value;
-            this.operations[operationCounter].amount = value;
+            this.operations[operationCounter] = new Operacao('s', value);
             this.operationCounter++;
             return true;
         } else {
@@ -66,4 +66,9 @@ public class Account {
         System.out.println("Saldo atual: " + this.balance);
         System.out.println("Limite: " + this.limit);
     }
+
+    void printStatemant(){
+        for(int i=0; i<1000; )
+    }
+
 }
