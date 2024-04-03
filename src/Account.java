@@ -2,20 +2,20 @@ import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
 public class Account {
 
-    Client owner;
-    double balance;
-    int num;
-    int limit;
-    String agency;
+    private Client owner;
+    private double balance;
+    private int ID;
+    private int limit;
+    private String agency;
 
-    Operacao[] operations;
+    private Operacao[] operations;
 
-    int operationCounter;
+    private int operationCounter;
 
-    public Account(Client owner, double balance, int num, int limit, String agency) {
+    public Account(Client owner, double balance, int ID, int limit, String agency) {
         this.owner = owner;
         this.balance = balance;
-        this.num = num;
+        this.ID = ID;
         this.limit = limit;
         this.agency = agency;
         this.operations = new Operacao[1000];
@@ -24,7 +24,7 @@ public class Account {
 
 
     boolean deposit(double value) {
-        if(value > 0.0) {
+        if (value > 0.0) {
             this.balance += value;
             this.operations[operationCounter] = new Operacao('d', value);
             this.operationCounter++;
@@ -36,7 +36,7 @@ public class Account {
 
 
     boolean withdraw(double value) {
-        if(value > 0.0 && value <= this.balance) {
+        if (value > 0.0 && value <= this.balance) {
             this.balance -= value;
             this.operations[operationCounter] = new Operacao('s', value);
             this.operationCounter++;
@@ -49,7 +49,7 @@ public class Account {
 
     boolean transfer(Account destineAccount, double value) {
         boolean withdrawMade = this.withdraw(value);
-        if(withdrawMade) {
+        if (withdrawMade) {
             boolean deposit = destineAccount.deposit(value);
             return deposit;
         } else {
@@ -64,17 +64,45 @@ public class Account {
         System.out.println("Endereço: " + this.owner.adress);
         System.out.println("Idade: " + this.owner.age);
         System.out.println("Sexo: " + this.owner.sex);
-        System.out.println("Número da conta: " + this.num);
+        System.out.println("Número da conta: " + this.ID);
         System.out.println("Saldo atual: " + this.balance);
         System.out.println("Limite: " + this.limit);
     }
 
-    void printStatemant(){
-        for(int i=0; i<this.operationCounter; i++){
+    void printStatemant() {
+        for (int i = 0; i < this.operationCounter; i++) {
             System.out.print(this.operations[i].date + "  ");
             System.out.print(this.operations[i].type + "   ");
             System.out.println("R$ " + this.operations[i].amount);
         }
     }
 
+
+    public Client getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Client owner) {
+        this.owner = owner;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
 }
