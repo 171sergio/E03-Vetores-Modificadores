@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
 public class Account {
 
     Client owner;
@@ -68,7 +70,11 @@ public class Account {
     }
 
     void printStatemant(){
-        for(int i=0; i<1000; )
+        for(int i=0; i<this.operationCounter; i++){
+            System.out.print(this.operations[i].date + "  ");
+            System.out.print(this.operations[i].type + "   ");
+            System.out.println("R$ " + this.operations[i].amount);
+        }
     }
 
 }

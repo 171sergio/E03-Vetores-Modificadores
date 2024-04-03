@@ -10,6 +10,11 @@ public class Main {
 
         account1.printOut();
 
+        account1.withdraw(500);
+        account1.deposit(100);
+
+        account1.printStatemant();
+
 
     }
 }
