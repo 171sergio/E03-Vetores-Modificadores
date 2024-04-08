@@ -12,6 +12,8 @@ public class Account {
 
     private int operationCounter;
 
+    public static int totAccounts=0;
+
     public Account(Client owner, double balance, int ID, int limit, String agency) {
         this.owner = owner;
         this.balance = balance;
@@ -20,6 +22,7 @@ public class Account {
         this.agency = agency;
         this.operations = new Operacao[1000];
         this.operationCounter = 0;
+        totAccounts++;
     }
 
 
@@ -104,5 +107,9 @@ public class Account {
 
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    public int getOperationCounter(){
+        return operationCounter;
     }
 }

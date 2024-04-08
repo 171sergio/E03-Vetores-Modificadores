@@ -1,9 +1,3 @@
-/**
- * Operacao.java
- *
- * @author João Eduardo Montandon
- */
-
 import java.util.Date;
 
 public class Operacao {
@@ -17,10 +11,13 @@ public class Operacao {
     /* Valor da operação */
     public double amount;
 
+    public static int totOperations=0;
+
     public Operacao(char type, double amount) {
         this.type = type;
         this.amount = amount;
         date = new Date();
+        totOperations++;
     }
 
     public double getAmount() {
@@ -41,7 +38,7 @@ public class Operacao {
 
     public void setType(char type) {
         if(type=='d' || type=='s'){
-        this.type = type;
+            this.type = type;
         }else{
             System.err.println("Erro, valores aceitos em type: s/d");;
             System.exit(1);
